@@ -52,7 +52,7 @@ database:
   url: jdbc:sqlserver://mssql.solvweb.net:1433;databaseName=jira
   driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
   credentials:
-    secretName: jira-secret
+    secretName: mssql-secret
     usernameSecretKey: username
     passwordSecretKey: password
 
