@@ -1,0 +1,13 @@
+# secretGenerator:
+# - name: mysql-secret
+#   literals:
+#   - MSSQL_SA_PASSWORD="Sql2019isfast"
+resources:
+  - namespace.yaml
+  - mssql-secret.yaml
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+namespace: mssql
+

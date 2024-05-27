@@ -1,0 +1,14 @@
+# create-db-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: create-db-script
+  namespace: mssql
+data:
+  create-db.sh: |
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Sql2019isfast" -Q "CREATE DATABASE confluence;"
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Sql2019isfast" -Q "ALTER DATABASE confluence SET ALLOW_SNAPSHOT_ISOLATION ON;"
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Sql2019isfast" -Q "ALTER DATABASE confluence SET READ_COMMITTED_SNAPSHOT ON;"
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Sql2019isfast" -Q "ALTER DATABASE confluence SET ALLOW_SNAPSHOT_ISOLATION ON;"
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Sql2019isfast" -Q "ALTER DATABASE confluence SET READ_COMMITTED_SNAPSHOT ON WITH ROLLBACK IMMEDIATE;"
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Sql2019isfast" -Q "USE confluence; CREATE LOGIN confluence WITH PASSWORD = 'confluence'; CREATE USER confluence FOR LOGIN confluence; ALTER ROLE db_owner ADD MEMBER confluence;"
